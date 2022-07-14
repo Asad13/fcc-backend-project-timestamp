@@ -24,10 +24,21 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.route('/api/:date').post(function(req,res){
+app.post('/api/:date?',function(req,res){
   let dateString;
   if(req.params.date){
     dateString = new Date(req.params.date);
+    if(!dateString.getTime()) res.json({ error : "Invalid Date" });
+  }else{
+    dateString = new Date();
+  }
+  res.json({unix: parseInt(dateString.getTime()), utc: dateString.toUTCString()});
+});
+
+app.post('/api/:date',function(req,res){
+  let dateString;
+  if(req.params.date){
+    dateString = new Date(parseInt(req.params.date));
     if(!dateString.getTime()) res.json({ error : "Invalid Date" });
   }else{
     dateString = new Date();
