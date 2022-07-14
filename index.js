@@ -26,14 +26,14 @@ app.get("/api/hello", function (req, res) {
 
 app.route('/api/:date').post(function(req,res){
   let dateString;
-  if(date){
+  if(req.params.date){
     dateString = new Date(req.params.date);
     if(!dateString.getTime()) res.json({ error : "Invalid Date" });
   }else{
     dateString = new Date();
   }
-  res.json({unix: dateString.getTime(), utc: dateString.toUTCString()});
-})
+  res.json({unix: parseInt(dateString.getTime()), utc: dateString.toUTCString()});
+});
 
 
 
