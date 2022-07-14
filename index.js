@@ -24,7 +24,7 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.post('/api/:date?',function(req,res){
+app.get('/api/:date?',function(req,res){
   let dateString;
   if(req.params.date){
     dateString = new Date(req.params.date);
@@ -35,7 +35,7 @@ app.post('/api/:date?',function(req,res){
   res.json({unix: parseInt(dateString.getTime()), utc: dateString.toUTCString()});
 });
 
-app.post('/api/:date',function(req,res){
+app.get('/api/:date',function(req,res){
   let dateString;
   if(req.params.date){
     dateString = new Date(parseInt(req.params.date));
