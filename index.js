@@ -26,7 +26,7 @@ app.get("/api/hello", function (req, res) {
 
 app.get('/api/:date',function(req,res){
   let dateString;
-  if(req.params.date){
+  if(req.params.date !== ""){
     if(/^\d+$/.test(req.params.date)){
       dateString = new Date(parseInt(req.params.date));
     }else{
