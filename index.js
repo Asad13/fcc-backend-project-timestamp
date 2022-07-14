@@ -24,6 +24,17 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.route('/api/:date').post(function(req,res){
+  let dateString;
+  if(date){
+    dateString = new Date(req.params.date);
+    if(!dateString.getTime()) res.json({ error : "Invalid Date" });
+  }else{
+    dateString = new Date();
+  }
+  res.json({unix: dateString.getTime(), utc: dateString.toUTCString()});
+})
+
 
 
 // listen for requests :)
