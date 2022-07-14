@@ -39,6 +39,11 @@ app.get('/api/:date',function(req,res){
   res.json({unix: parseInt(dateString.getTime()), utc: dateString.toUTCString()});
 });
 
+app.get('/api',function(req,res){
+  let dateString = new Date();
+  res.json({unix: parseInt(dateString.getTime()), utc: dateString.toUTCString()});
+});
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
